@@ -99,9 +99,9 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 .product-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .25s;text-decoration:none;display:block}
 .product-card:hover{border-color:var(--rose);transform:translateY(-2px)}
 .product-img-wrap{position:relative;overflow:hidden}
-.product-img-wrap img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--dark3);transition:transform .4s}
+.product-img-wrap img{width:100%;height:160px;object-fit:contain;display:block;background:var(--dark3);padding:8px;transition:transform .4s}
 .product-card:hover .product-img-wrap img{transform:scale(1.04)}
-.product-img-placeholder{width:100%;aspect-ratio:4/3;background:var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted)}
+.product-img-placeholder{width:100%;height:160px;background:var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted)}
 .product-img-placeholder svg{width:24px;height:24px;opacity:.35}
 .product-badge{position:absolute;top:8px;left:8px;background:var(--rose);color:var(--dark);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:10px;font-weight:500}
 .product-info{padding:10px}
@@ -116,7 +116,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 @keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
 .modal{background:var(--dark2);border:1px solid var(--border);border-radius:20px 20px 0 0;padding:1.5rem;width:100%;max-width:480px;animation:modalSlideUp .3s ease}
 @keyframes modalSlideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
-.modal-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;margin-bottom:1rem;background:var(--dark3);max-height:200px}
+.modal-img{width:100%;height:180px;object-fit:contain;border-radius:12px;margin-bottom:1rem;background:var(--dark3);padding:8px}
 .modal-img-placeholder{width:100%;height:220px;border-radius:12px;background:var(--dark3);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
 .modal-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:4px}
 .modal-name{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:300;color:var(--cream);margin-bottom:4px}
