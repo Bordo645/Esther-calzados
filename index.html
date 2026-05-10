@@ -417,18 +417,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
   <!-- HOMBRE — 12 productos reales -->
   <div id="grid-hombre" class="products-grid" style="display:none">
 
-    <!-- Reutilizo un macro para las 12 cards -->
-    <div class="product-card" onclick="openModal('Asics Gel-Hypersonic 4','Zapatilla running de alto rendimiento con tecnología AmpliFlite. Azul/dorado.','Hombre','hombre1.jpeg')">
-      <div class="product-img-wrap"><img src="hombre1.jpeg" alt="Asics Gel-Hypersonic 4 suela"/>
-        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
-      <div class="product-info"><div class="product-name">Asics · Gel-Hypersonic 4</div><div class="product-desc">Azul/Dorado · Running</div>
-        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
-    </div>
-
-    <div class="product-card" onclick="openModal('Asics · Gel-Hypersonic 4','Zapatilla running premium con cushioning AmpliFlite. Original de fábrica.','Hombre','hombre2.jpeg')">
+    <!-- Asics unificado: 1 card, 2 fotos en el modal -->
+    <div class="product-card" onclick="openModal('Asics · Gel-Hypersonic 4','Zapatilla running premium con tecnología AmpliFlite. Azul/dorado. Original de fábrica.','Hombre',['hombre2.jpeg','hombre1.jpeg'])">
       <div class="product-img-wrap"><img src="hombre2.jpeg" alt="Asics Gel-Hypersonic 4"/>
         <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
-      <div class="product-info"><div class="product-name">Asics · Gel-Hypersonic 4</div><div class="product-desc">Azul/Negro · Running</div>
+      <div class="product-info"><div class="product-name">Asics · Gel-Hypersonic 4</div><div class="product-desc">Azul/Dorado · Running</div>
         <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
     </div>
 
@@ -481,17 +474,17 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
         <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
     </div>
 
-    <div class="product-card" onclick="openModal('Topper · Trail Celeste/Gris','Zapatilla trail runner con suela goma anaranjada. Celeste/gris. Talles 39/45.','Hombre','hombre10.jpeg')">
-      <div class="product-img-wrap"><img src="hombre10.jpeg" alt="Topper trail celeste gris"/>
+    <div class="product-card" onclick="openModal('Olympikus · Trail Celeste/Gris','Zapatilla trail Olympikus. Celeste/gris con suela goma anaranjada. Talles 39/45.','Hombre','hombre10.jpeg')">
+      <div class="product-img-wrap"><img src="hombre10.jpeg" alt="Olympikus trail celeste gris"/>
         <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
-      <div class="product-info"><div class="product-name">Topper · Trail</div><div class="product-desc">Celeste/Gris · Talles 39/45</div>
+      <div class="product-info"><div class="product-name">Olympikus · Trail</div><div class="product-desc">Celeste/Gris · Talles 39/45</div>
         <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
     </div>
 
-    <div class="product-card" onclick="openModal('Olympikus · Running Negro','Zapatilla running Olympikus con tecnología EvaSense. Negro/dorado. Original de fábrica.','Hombre','hombre11.jpeg')">
-      <div class="product-img-wrap"><img src="hombre11.jpeg" alt="Olympikus running negro dorado"/>
+    <div class="product-card" onclick="openModal('Topper · X-Forcer Clásica','Zapatilla clásica Topper X-Forcer. Gris y blanco con franjas tricolor. Talles 35/46.','Hombre','hombre11.jpeg')">
+      <div class="product-img-wrap"><img src="hombre11.jpeg" alt="Topper X-Forcer clásica"/>
         <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
-      <div class="product-info"><div class="product-name">Olympikus · Running</div><div class="product-desc">Negro/Dorado · EvaSense</div>
+      <div class="product-info"><div class="product-name">Topper · X-Forcer Clásica</div><div class="product-desc">Gris/Blanco · Talles 35/46</div>
         <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
     </div>
 
@@ -612,8 +605,12 @@ function openModal(name, desc, badge, imgSrc){
   document.getElementById('modal-desc').textContent = desc;
   document.getElementById('modal-eyebrow').textContent = badge;
   const imgWrap = document.getElementById('modal-img-wrap');
-  if(imgSrc){
-    imgWrap.innerHTML = '<img class="modal-img" src="'+imgSrc+'" alt="'+name+'"/>';
+  // imgSrc puede ser string o array
+  const imgs = Array.isArray(imgSrc) ? imgSrc : (imgSrc ? [imgSrc] : []);
+  if(imgs.length > 0){
+    imgWrap.innerHTML = imgs.map(src =>
+      '<img class="modal-img" src="'+src+'" alt="'+name+'"/>'
+    ).join('');
   } else {
     imgWrap.innerHTML = '<div class="modal-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#C4785A" stroke-width="1" width="40" height="40"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
   }
