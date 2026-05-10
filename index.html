@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>Esther Calzados · Oberá, Misiones</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F7F0E8;
+  --dark:#1C1410;
+  --dark2:#251C15;
+  --dark3:#2E221A;
+  --rose:#C4785A;
+  --rose2:#D9906E;
+  --rose-light:rgba(196,120,90,.15);
+  --rose-border:rgba(196,120,90,.3);
+  --text:#F7F0E8;
+  --muted:#9C8778;
+  --border:rgba(196,120,90,.2);
+  --white:rgba(247,240,232,.9);
+}
+html,body{background:var(--dark);color:var(--text);font-family:"Jost",sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* ── SPLASH ── */
+#splash{position:fixed;inset:0;z-index:999;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .8s,visibility .8s}
+#splash.hide{opacity:0;visibility:hidden}
+.splash-logo-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;animation:splashIn .9s ease both}
+.splash-logo-svg{width:90px;height:90px}
+.splash-brand{font-family:"Cormorant Garamond",serif;font-size:36px;font-weight:300;letter-spacing:6px;color:var(--rose);text-transform:uppercase}
+.splash-sub{font-size:11px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;animation:splashIn .9s .3s ease both;opacity:0}
+.splash-bar-wrap{width:160px;height:1px;background:rgba(196,120,90,.15);overflow:hidden;border-radius:2px;animation:splashIn .5s .5s ease both;opacity:0}
+.splash-bar{height:100%;width:0;background:var(--rose);animation:loadBar 2.8s .7s ease forwards}
+@keyframes splashIn{to{opacity:1;transform:none}from{opacity:0;transform:translateY(8px)}}
+@keyframes loadBar{to{width:100%}}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(28,20,16,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-svg{width:36px;height:36px}
+.nav-brand{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:300;letter-spacing:3px;color:var(--rose);text-transform:uppercase}
+.nav-links{display:flex;gap:4px}
+.nav-pill{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:20px;cursor:pointer;font-family:"Jost",sans-serif;font-weight:400;transition:all .2s;text-decoration:none;display:inline-block}
+.nav-pill:hover,.nav-pill.active{border-color:var(--rose);color:var(--rose);background:var(--rose-light)}
+.nav-wa{background:var(--rose);border:none;color:var(--dark);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:20px;cursor:pointer;font-family:"Jost",sans-serif;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s}
+.nav-wa:hover{background:var(--rose2)}
+.nav-wa svg{width:13px;height:13px}
+
+/* ── HERO ── */
+.hero{position:relative;padding:3.5rem 1.25rem 2.5rem;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(196,120,90,.08) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;opacity:0;animation:fadeUp .8s .2s ease forwards}
+.hero-title{font-family:"Cormorant Garamond",serif;font-size:clamp(44px,11vw,68px);font-weight:300;line-height:1.05;color:var(--cream);margin-bottom:12px;opacity:0;animation:fadeUp .8s .35s ease forwards}
+.hero-title em{font-style:italic;color:var(--rose)}
+.hero-tagline{font-size:13px;letter-spacing:1px;color:var(--muted);margin-bottom:8px;opacity:0;animation:fadeUp .8s .5s ease forwards}
+.hero-location{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(156,135,120,.6);margin-bottom:2rem;opacity:0;animation:fadeUp .8s .6s ease forwards;display:flex;align-items:center;justify-content:center;gap:5px}
+.hero-location svg{width:11px;height:11px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--rose);color:var(--dark);padding:13px 28px;border-radius:40px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .25s;opacity:0;animation:fadeUp .8s .7s ease forwards;cursor:pointer;border:none;font-family:"Jost",sans-serif}
+.hero-cta:hover{background:var(--rose2);transform:translateY(-2px)}
+.hero-cta svg{width:16px;height:16px}
+.hero-divider{margin:2.5rem auto 0;width:40px;height:1px;background:var(--rose-border);opacity:0;animation:fadeUp .8s .9s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}from{opacity:0;transform:translateY(16px)}}
+
+/* ── SECTION TITLE ── */
+.sec-hdr{padding:2rem 1.25rem .75rem;display:flex;align-items:baseline;gap:12px}
+.sec-hdr-line{flex:1;height:1px;background:var(--border)}
+.sec-title{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:300;letter-spacing:4px;text-transform:uppercase;color:var(--rose);white-space:nowrap}
+.sec-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:0 1.25rem .75rem}
+
+/* ── CAROUSEL ── */
+.carousel-wrap{position:relative;overflow:hidden;padding:0 0 1.5rem}
+.carousel-track{display:flex;gap:10px;padding:0 1.25rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.carousel-track::-webkit-scrollbar{display:none}
+.carousel-slide{flex-shrink:0;scroll-snap-align:start;width:calc(85vw);max-width:320px;border-radius:12px;overflow:hidden;border:1px solid var(--border);position:relative}
+.carousel-slide img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--dark3)}
+.carousel-slide-placeholder{width:100%;aspect-ratio:3/4;background:var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted)}
+.carousel-slide-placeholder svg{width:32px;height:32px;opacity:.4}
+.carousel-slide-placeholder span{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.5}
+.carousel-dots{display:flex;justify-content:center;gap:6px;padding:.75rem 0 0}
+.cdot{width:4px;height:4px;border-radius:50%;background:var(--rose-border);transition:all .3s;cursor:pointer}
+.cdot.active{width:16px;border-radius:2px;background:var(--rose)}
+.carousel-arrows{display:flex;gap:6px;justify-content:center;padding:.25rem 0 0}
+.carr-btn{background:var(--dark3);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:14px}
+.carr-btn:hover{border-color:var(--rose);color:var(--rose)}
+
+/* ── PRODUCTS GRID ── */
+.products-section{padding:0 0 2rem}
+.gender-tabs{display:flex;gap:0;padding:0 1.25rem 1rem;border-bottom:1px solid var(--border);margin-bottom:1rem}
+.gtab{flex:1;padding:10px 8px;text-align:center;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:400;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:"Jost",sans-serif;transition:all .2s}
+.gtab.active{color:var(--rose);border-bottom-color:var(--rose)}
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 1.25rem}
+.product-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .25s;text-decoration:none;display:block}
+.product-card:hover{border-color:var(--rose);transform:translateY(-2px)}
+.product-img-wrap{position:relative;overflow:hidden}
+.product-img-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:var(--dark3);transition:transform .4s}
+.product-card:hover .product-img-wrap img{transform:scale(1.04)}
+.product-img-placeholder{width:100%;aspect-ratio:3/4;background:var(--dark3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted)}
+.product-img-placeholder svg{width:24px;height:24px;opacity:.35}
+.product-badge{position:absolute;top:8px;left:8px;background:var(--rose);color:var(--dark);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:10px;font-weight:500}
+.product-info{padding:10px}
+.product-name{font-family:"Cormorant Garamond",serif;font-size:15px;font-weight:400;color:var(--cream);line-height:1.3;margin-bottom:3px}
+.product-desc{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-bottom:8px;line-height:1.4}
+.product-price-btn{display:flex;align-items:center;gap:5px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--rose);font-weight:400}
+.product-price-btn svg{width:13px;height:13px}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;align-items:flex-end;justify-content:center;padding:0}
+.modal-overlay.open{display:flex;animation:modalFadeIn .3s ease}
+@keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--dark2);border:1px solid var(--border);border-radius:20px 20px 0 0;padding:1.5rem;width:100%;max-width:480px;animation:modalSlideUp .3s ease}
+@keyframes modalSlideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.modal-img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;margin-bottom:1rem;background:var(--dark3);max-height:260px}
+.modal-img-placeholder{width:100%;height:220px;border-radius:12px;background:var(--dark3);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.modal-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:4px}
+.modal-name{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:300;color:var(--cream);margin-bottom:4px}
+.modal-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.modal-price-row{background:var(--dark3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.modal-price-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.modal-price-value{font-family:"Cormorant Garamond",serif;font-size:18px;color:var(--cream);font-style:italic}
+.modal-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--rose);color:var(--dark);padding:14px;border-radius:12px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-decoration:none;cursor:pointer;border:none;font-family:"Jost",sans-serif;width:100%;transition:all .2s;margin-bottom:.75rem}
+.modal-wa-btn:hover{background:var(--rose2)}
+.modal-wa-btn svg{width:18px;height:18px}
+.modal-close{display:block;text-align:center;background:none;border:none;color:var(--muted);font-size:11px;letter-spacing:1px;cursor:pointer;font-family:"Jost",sans-serif;padding:.5rem}
+
+/* ── ABOUT ── */
+.about-band{margin:1.5rem 1.25rem;background:var(--dark2);border:1px solid var(--border);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden}
+.about-band::before{content:"";position:absolute;right:-20px;top:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(196,120,90,.1) 0%,transparent 70%);pointer-events:none}
+.about-icon{width:44px;height:44px;background:var(--rose-light);border:1px solid var(--rose-border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.about-icon svg{width:20px;height:20px;color:var(--rose)}
+.about-title{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:300;color:var(--cream);margin-bottom:6px}
+.about-text{font-size:12px;color:var(--muted);line-height:1.7}
+.about-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.about-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--rose-border);color:var(--rose);padding:4px 10px;border-radius:20px}
+
+/* ── FOOTER ── */
+.footer{background:var(--dark2);border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center}
+.footer-brand{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:300;letter-spacing:5px;color:var(--rose);text-transform:uppercase;margin-bottom:4px}
+.footer-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.footer-wa{display:inline-flex;align-items:center;gap:8px;background:var(--rose);color:var(--dark);padding:12px 24px;border-radius:30px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .2s;margin-bottom:1.5rem}
+.footer-wa:hover{background:var(--rose2)}
+.footer-wa svg{width:15px;height:15px}
+.footer-legal{font-size:10px;color:rgba(156,135,120,.4);letter-spacing:1px}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:1.5rem;right:1.25rem;z-index:80;width:52px;height:52px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(196,120,90,.4);cursor:pointer;transition:all .25s;text-decoration:none;animation:waPop .5s 5s ease both;opacity:0}
+.wa-float:hover{transform:scale(1.1);background:var(--rose2)}
+.wa-float svg{width:24px;height:24px}
+@keyframes waPop{to{opacity:1}from{opacity:0;transform:scale(.8)}}
+
+/* ── LOGO SVG ── */
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-logo-wrap">
+    <!-- Logo inline SVG -->
+    <svg class="splash-logo-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="45" cy="45" r="44" stroke="#C4785A" stroke-width="1" opacity=".3"/>
+      <circle cx="45" cy="45" r="38" stroke="#C4785A" stroke-width=".5" opacity=".2"/>
+      <!-- Zapato estilizado -->
+      <path d="M20 56 C20 56 22 48 30 46 C35 44.5 40 45 47 44 C54 43 60 40 64 38 C66 37 68 37.5 69 39 C70 40.5 69 43 66 44.5 C62 46.5 56 47 52 47.5 L52 50 C52 52 50 54 47 54.5 L22 57.5 C21 57.6 20 57 20 56 Z" fill="#C4785A" opacity=".9"/>
+      <path d="M22 57 L47 54.5 C47 54.5 48 56 48 58 C48 59 47 60 46 60 L24 60 C22.5 60 21.5 59 22 57.5 Z" fill="#C4785A" opacity=".6"/>
+      <path d="M52 47.5 C52 47.5 54 47 56 46.5 L56 52 C56 53.5 54.5 54.5 53 54.5 L52 54.5 Z" fill="#C4785A" opacity=".5"/>
+      <!-- Tacón estilizado -->
+      <path d="M48 54 L52 54.5 L52 60 L48 60 Z" fill="#C4785A" opacity=".4"/>
+    </svg>
+    <div class="splash-brand">Esther</div>
+  </div>
+  <div class="splash-sub">Calzados · Oberá, Misiones</div>
+  <div class="splash-bar-wrap">
+    <div class="splash-bar"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#top">
+    <svg class="nav-logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" stroke="#C4785A" stroke-width=".8" opacity=".4"/>
+      <path d="M8 24.5 C8 24.5 9.2 19 14 17.5 C17 16.5 19.5 17 23.5 16.2 C27.5 15.4 31 13.5 33.2 12.4 C34.2 11.9 35.3 12.2 35.8 13 C36.3 13.9 35.8 15.4 34 16.3 C31.5 17.5 28 18 25.7 18.3 L25.7 20.2 C25.7 21.5 24.5 22.7 22.8 23 L9.2 24.7 C8.6 24.8 8 24.2 8 24.5 Z" fill="#C4785A" opacity=".9"/>
+      <path d="M9.2 24.6 L22.8 23 C22.8 23 23.4 24 23.4 25.2 C23.4 25.9 22.8 26.5 22.2 26.5 L10.2 26.5 C9.3 26.5 8.8 25.9 9.2 24.8 Z" fill="#C4785A" opacity=".5"/>
+    </svg>
+    <span class="nav-brand">Esther</span>
+  </a>
+  <div class="nav-links">
+    <button class="nav-pill" onclick="scrollTo('#mujer')">Mujer</button>
+    <button class="nav-pill" onclick="scrollTo('#hombre')">Hombre</button>
+    <a class="nav-wa" href="https://wa.me/5493755449849" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+      Contacto
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-eyebrow">Colección disponible</div>
+  <h1 class="hero-title">Esther<br><em>Calzados</em></h1>
+  <p class="hero-tagline">Originales de fábrica, nada de réplicas</p>
+  <p class="hero-location">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    Oberá, Misiones · Argentina
+  </p>
+  <a class="hero-cta" href="https://wa.me/5493755449849" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+    Consultá por WhatsApp
+  </a>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- CARRUSEL -->
+<section>
+  <div class="sec-hdr">
+    <div class="sec-title">Galería</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+  <p class="sec-sub">Mirá nuestras novedades</p>
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="carousel">
+      <div class="carousel-slide"><img src="carousel1.jpeg" alt="Wake Sport"/></div>
+      <div class="carousel-slide"><img src="carousel2.jpeg" alt="Topper Tie Break III y X-Forcer"/></div>
+      <div class="carousel-slide"><img src="carousel3.jpeg" alt="Topper X-Forcer colores"/></div>
+      <div class="carousel-slide"><img src="carousel4.jpeg" alt="Asics y Topper running"/></div>
+      <div class="carousel-slide"><img src="carousel5.jpeg" alt="New Balance 460 y Fila"/></div>
+      <div class="carousel-slide"><img src="carousel6.jpeg" alt="Mocasines y zapatos formales"/></div>
+      <div class="carousel-slide"><img src="carousel7.jpeg" alt="Ringo Ruck 01"/></div>
+      <div class="carousel-slide"><img src="carousel8.jpeg" alt="Rolling Amy marrón by Ringo"/></div>
+      <div class="carousel-slide"><img src="carousel9.jpeg" alt="Rolling Amy negro by Ringo"/></div>
+    </div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+    <div class="carousel-arrows">
+      <button class="carr-btn" onclick="carouselMove(-1)">←</button>
+      <button class="carr-btn" onclick="carouselMove(1)">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT BAND -->
+<div class="about-band">
+  <div class="about-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+  </div>
+  <div class="about-title">100% originales de fábrica</div>
+  <div class="about-text">En Esther Calzados trabajamos únicamente con productos originales directos de fábrica. Calidad garantizada, precios accesibles y atención personalizada desde Oberá, Misiones.</div>
+  <div class="about-tags">
+    <span class="about-tag">Originales</span>
+    <span class="about-tag">Sin réplicas</span>
+    <span class="about-tag">Fábrica directa</span>
+    <span class="about-tag">Oberá, Misiones</span>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="products-section">
+  <div class="sec-hdr">
+    <div class="sec-title">Catálogo</div>
+    <div class="sec-hdr-line"></div>
+  </div>
+
+  <div class="gender-tabs">
+    <button class="gtab active" id="tab-mujer" onclick="showGender('mujer')">
+      ♀ &nbsp;Mujer
+    </button>
+    <button class="gtab" id="tab-hombre" onclick="showGender('hombre')">
+      ♂ &nbsp;Hombre
+    </button>
+  </div>
+
+  <!-- MUJER -->
+  <div id="grid-mujer" class="products-grid">
+    <!-- Las fotos de mujer se agregan acá. Ejemplo:
+    <a class="product-card" onclick="openModal('Nombre','Descripción','mujer','url-foto.jpg')">
+      <div class="product-img-wrap">
+        <img src="foto.jpg" alt="..."/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Nombre</div>
+        <div class="product-desc">Descripción breve</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </a>
+    -->
+
+    <!-- MUJER — 6 productos reales -->
+    <div class="product-card" onclick="openModal('Piccadilly · Taco bajo','Zapato de taco bajo clásico, comodidad garantizada. Ideal para el día a día y uso formal.','Mujer','mujer1.jpeg')">
+      <div class="product-img-wrap">
+        <img src="mujer1.jpeg" alt="Piccadilly taco bajo negro"/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Piccadilly · Taco bajo</div>
+        <div class="product-desc">Negro · Original de fábrica</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Wake · Slip-on Negro','Zapatilla slip-on ultraliviana con suela blanca. Talles 35 al 40.','Mujer','mujer2.jpeg')">
+      <div class="product-img-wrap">
+        <img src="mujer2.jpeg" alt="Wake slip-on negro mujer"/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Wake · Slip-on</div>
+        <div class="product-desc">Negro · Talles 35/40</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Wake · Slip-on Visón','Zapatilla slip-on en color visón, cómoda y versátil. Talles 35 al 40.','Mujer','mujer3.jpeg')">
+      <div class="product-img-wrap">
+        <img src="mujer3.jpeg" alt="Wake slip-on visón mujer"/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Wake · Slip-on</div>
+        <div class="product-desc">Visón · Talles 35/40</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Wake · Plataforma Beige','Zapatilla con plataforma y detalle rosa. Estilo urbano, talles 35 al 40.','Mujer','mujer4.jpeg')">
+      <div class="product-img-wrap">
+        <img src="mujer4.jpeg" alt="Wake plataforma beige mujer"/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Wake · Plataforma</div>
+        <div class="product-desc">Beige/Rosa · Talles 35/40</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Vizzano · Pelica Moca','Zapatilla con estampado animal print, detalle dorado y suela blanca. Talles 36 al 40.','Mujer','mujer5.jpeg')">
+      <div class="product-img-wrap">
+        <img src="mujer5.jpeg" alt="Vizzano pelica canela moca"/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Vizzano · Pelica Moca</div>
+        <div class="product-desc">Animal print · Talles 36/40</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Piccadilly · Mocasín','Mocasín negro con hebilla dorada, diseño sofisticado y cómodo. Original de fábrica.','Mujer','mujer6.jpeg')">
+      <div class="product-img-wrap">
+        <img src="mujer6.jpeg" alt="Piccadilly mocasín negro dorado"/>
+        <div class="product-badge">Mujer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Piccadilly · Mocasín</div>
+        <div class="product-desc">Negro con hebilla dorada</div>
+        <div class="product-price-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+          Consultar precio
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOMBRE — 12 productos reales -->
+  <div id="grid-hombre" class="products-grid" style="display:none">
+
+    <!-- Reutilizo un macro para las 12 cards -->
+    <div class="product-card" onclick="openModal('Asics Gel-Hypersonic 4','Zapatilla running de alto rendimiento con tecnología AmpliFlite. Azul/dorado.','Hombre','hombre1.jpeg')">
+      <div class="product-img-wrap"><img src="hombre1.jpeg" alt="Asics Gel-Hypersonic 4 suela"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Asics · Gel-Hypersonic 4</div><div class="product-desc">Azul/Dorado · Running</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Asics · Gel-Hypersonic 4','Zapatilla running premium con cushioning AmpliFlite. Original de fábrica.','Hombre','hombre2.jpeg')">
+      <div class="product-img-wrap"><img src="hombre2.jpeg" alt="Asics Gel-Hypersonic 4"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Asics · Gel-Hypersonic 4</div><div class="product-desc">Azul/Negro · Running</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Wake Sport · Trekking','Zapatilla trekking ultraresistente. Negro con detalles blancos. Talles 40/45.','Hombre','hombre3.jpeg')">
+      <div class="product-img-wrap"><img src="hombre3.jpeg" alt="Wake Sport trekking negro"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Wake Sport · Trekking</div><div class="product-desc">Negro/Blanco · Talles 40/45</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Topper · Tie Break III y X-Forcer','Zapatillas de tenis Topper. Tie Break III y X-Forcer en blanco y negro.','Hombre','hombre4.jpeg')">
+      <div class="product-img-wrap"><img src="hombre4.jpeg" alt="Topper Tie Break III X-Forcer"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Topper · Tie Break III / X-Forcer</div><div class="product-desc">Blanco y Negro · Tenis</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Fila · Renno Classic','Zapatilla retro clásica. Negro/Grafito, suela goma natural. Talles 38/46.','Hombre','hombre5.jpeg')">
+      <div class="product-img-wrap"><img src="hombre5.jpeg" alt="Fila Renno Classic negro grafito"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Fila · Renno Classic</div><div class="product-desc">Negro/Grafito · Talles 38/46</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Topper · Zapatilla Running','Zapatilla running Topper todo negro, liviana y cómoda. Original de fábrica.','Hombre','hombre6.jpeg')">
+      <div class="product-img-wrap"><img src="hombre6.jpeg" alt="Topper running negro"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Topper · Running</div><div class="product-desc">Negro total · Liviana</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Zapatilla · Velcro Doble','Zapatilla de cuero negro con doble velcro. Cómoda y práctica para el día a día.','Hombre','hombre7.jpeg')">
+      <div class="product-img-wrap"><img src="hombre7.jpeg" alt="Zapatilla velcro doble negro"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Zapatilla · Velcro Doble</div><div class="product-desc">Negro · Cuero · Cómoda</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Fila · Urbana Negro','Zapatilla urbana Fila cuero negro, plataforma con branding lateral. Talles 40/43.','Hombre','hombre8.jpeg')">
+      <div class="product-img-wrap"><img src="hombre8.jpeg" alt="Fila urbana negro"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Fila · Urbana</div><div class="product-desc">Negro total · Talles 40/43</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Topper · Retro Gris/Blanco','Zapatilla retro Topper en gris y blanco. Clásica con detalle tricolor. Talles 35/46.','Hombre','hombre9.jpeg')">
+      <div class="product-img-wrap"><img src="hombre9.jpeg" alt="Topper X-Forcer gris blanco"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Topper · Retro</div><div class="product-desc">Gris/Blanco · Talles 35/46</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Topper · Trail Celeste/Gris','Zapatilla trail runner con suela goma anaranjada. Celeste/gris. Talles 39/45.','Hombre','hombre10.jpeg')">
+      <div class="product-img-wrap"><img src="hombre10.jpeg" alt="Topper trail celeste gris"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Topper · Trail</div><div class="product-desc">Celeste/Gris · Talles 39/45</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Olympikus · Running Negro','Zapatilla running Olympikus con tecnología EvaSense. Negro/dorado. Original de fábrica.','Hombre','hombre11.jpeg')">
+      <div class="product-img-wrap"><img src="hombre11.jpeg" alt="Olympikus running negro dorado"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Olympikus · Running</div><div class="product-desc">Negro/Dorado · EvaSense</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+    <div class="product-card" onclick="openModal('Asics y Topper · Colección','Asics Gel-Hypersonic azul y Topper running verde/gris. Talles varios.','Hombre','hombre12.jpeg')">
+      <div class="product-img-wrap"><img src="hombre12.jpeg" alt="Asics y Topper colección"/>
+        <div class="product-badge" style="background:var(--dark3);color:var(--rose);border:1px solid var(--rose-border)">Hombre</div></div>
+      <div class="product-info"><div class="product-name">Asics + Topper · Colección</div><div class="product-desc">Azul/Gris/Verde · Running</div>
+        <div class="product-price-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg> Consultar precio</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Esther Calzados</div>
+  <div class="footer-sub">Oberá · Misiones · Argentina</div>
+  <a class="footer-wa" href="https://wa.me/5493755449849" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+    +54 9 3755 44-9849
+  </a>
+  <div class="footer-legal">© 2025 Esther Calzados · Todos los derechos reservados</div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/5493755449849" target="_blank" rel="noopener" title="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+</a>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <div id="modal-img-wrap"></div>
+    <div class="modal-eyebrow" id="modal-eyebrow">Calzado</div>
+    <div class="modal-name" id="modal-name">Nombre</div>
+    <div class="modal-desc" id="modal-desc">Descripción</div>
+    <div class="modal-price-row">
+      <div>
+        <div class="modal-price-label">Precio</div>
+      </div>
+      <div class="modal-price-value">Consultá conmigo 👇</div>
+    </div>
+    <a class="modal-wa-btn" id="modal-wa-link" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.428a.75.75 0 00.917.917l5.61-1.451A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.895 0-3.674-.522-5.197-1.43l-.374-.22-3.872 1.001 1.003-3.767-.243-.386A9.955 9.955 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+      Contactate conmigo
+    </a>
+    <button class="modal-close" onclick="closeModal()">✕ Cerrar</button>
+  </div>
+</div>
+
+<script>
+const WA = '5493755449849';
+
+// ── NAV SCROLL ──
+function scrollTo(sel){
+  const el = document.querySelector(sel);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+}
+
+// ── SPLASH ──
+(function(){
+  const s = document.getElementById('splash');
+  setTimeout(()=>{
+    s.classList.add('hide');
+    setTimeout(()=>{ s.style.display='none'; }, 800);
+  }, 4200);
+})();
+
+// ── GENDER TABS ──
+function showGender(g){
+  document.getElementById('grid-mujer').style.display = g==='mujer' ? 'grid' : 'none';
+  document.getElementById('grid-hombre').style.display = g==='hombre' ? 'grid' : 'none';
+  document.getElementById('tab-mujer').classList.toggle('active', g==='mujer');
+  document.getElementById('tab-hombre').classList.toggle('active', g==='hombre');
+}
+
+// ── CAROUSEL ──
+(function(){
+  const track = document.getElementById('carousel');
+  const dotsEl = document.getElementById('carousel-dots');
+  const slides = track.querySelectorAll('.carousel-slide');
+  let current = 0;
+
+  // build dots
+  slides.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'cdot' + (i===0?' active':'');
+    d.onclick = ()=>goTo(i);
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(i){
+    current = (i + slides.length) % slides.length;
+    const w = slides[0].offsetWidth + 10;
+    track.scrollTo({left: current * w, behavior:'smooth'});
+    dotsEl.querySelectorAll('.cdot').forEach((d,j)=>d.classList.toggle('active', j===current));
+  }
+
+  window.carouselMove = function(dir){ goTo(current + dir); };
+
+  // auto
+  setInterval(()=>goTo(current+1), 4000);
+
+  // sync dots on scroll
+  track.addEventListener('scroll',()=>{
+    const w = slides[0].offsetWidth + 10;
+    const idx = Math.round(track.scrollLeft / w);
+    if(idx !== current){
+      current = idx;
+      dotsEl.querySelectorAll('.cdot').forEach((d,j)=>d.classList.toggle('active', j===current));
+    }
+  });
+})();
+
+// ── MODAL ──
+function openModal(name, desc, badge, imgSrc){
+  document.getElementById('modal-name').textContent = name;
+  document.getElementById('modal-desc').textContent = desc;
+  document.getElementById('modal-eyebrow').textContent = badge;
+  const imgWrap = document.getElementById('modal-img-wrap');
+  if(imgSrc){
+    imgWrap.innerHTML = '<img class="modal-img" src="'+imgSrc+'" alt="'+name+'"/>';
+  } else {
+    imgWrap.innerHTML = '<div class="modal-img-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#C4785A" stroke-width="1" width="40" height="40"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
+  }
+  const msg = encodeURIComponent('Hola Esther! Me interesa el *'+name+'*. ¿Podés darme el precio y disponibilidad de talles?');
+  document.getElementById('modal-wa-link').href = 'https://wa.me/'+WA+'?text='+msg;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e){
+  if(e.target === document.getElementById('modal-overlay')) closeModal();
+}
+</script>
+</body>
+</html>
